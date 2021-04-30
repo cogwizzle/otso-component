@@ -16,7 +16,7 @@ module.exports = {
 
     await generate({
       template: 'hero-page-template.ts.ejs',
-      target: `pages/${name}.tsx`,
+      target: `src/pages/${name}.tsx`,
       props: { name, properName },
     })
 
