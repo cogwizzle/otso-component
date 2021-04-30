@@ -1,12 +1,10 @@
 
-import { GluegunToolbox } from 'gluegun'
-import { pascalCase } from 'pascal-case'
+const pascalCase = require('pascal-case').pascalCase
 
 module.exports = {
   name: 'generate-hero-page',
   alias: ['ghp'],
-  run: async (toolbox: GluegunToolbox) => {
-    toolbox.print.info('hello world');
+  run: async (toolbox) => {
     const {
       parameters,
       template: { generate },
