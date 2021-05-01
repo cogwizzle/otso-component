@@ -2,8 +2,8 @@
 const pascalCase = require('pascal-case').pascalCase
 
 module.exports = {
-  name: 'generate-hero-page',
-  alias: ['ghp'],
+  name: 'generate-card-trifold',
+  alias: ['gct'],
   run: async (toolbox) => {
     const {
       parameters,
@@ -15,11 +15,11 @@ module.exports = {
     const properName = pascalCase(name)
 
     await generate({
-      template: 'hero-page-template.ts.ejs',
-      target: `src/pages/${name}.tsx`,
+      template: 'card-trifold-template.ts.ejs',
+      target: `./${name}.tsx`,
       props: { name, properName },
     })
 
-    info(`Generate hero page at pages/${name}.tsx`)
+    info(`Generate Card trifold ./${name}.tsx`)
   },
 }
