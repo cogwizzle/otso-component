@@ -1,7 +1,7 @@
-import * as React from 'react'
+import React from 'react'
 import { Controlled<%= props.pascalCase(props.inputType) %> } from 'component'
 
-const <%= props.pascalCase(props.inputName) %>: React.FunctionComponent = () => {
+const <%= props.pascalCase(props.inputName) %> = () => {
   return (
     <Controlled<%= props.pascalCase(props.inputType) %>
       label='<%= props.pascalCase(props.inputName) %>'

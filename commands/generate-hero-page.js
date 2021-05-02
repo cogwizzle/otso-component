@@ -24,11 +24,11 @@ module.exports = {
     const properName = pascalCase(name)
 
     await generate({
-      template: 'hero-page-template.ts.ejs',
-      target: `src/pages/${name}.tsx`,
+      template: 'hero-page-template.js.ejs',
+      target: `src/pages/${name}.jsx`,
       props: { name, properName },
     })
 
-    info(`Generate hero page at pages/${name}.tsx`)
+    info(`Generate hero page at pages/${name}.jsx`)
   },
 }

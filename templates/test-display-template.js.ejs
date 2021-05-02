@@ -1,7 +1,7 @@
-import * as React from 'react'
+import React from 'react'
 import { useFormContext } from 'react-form-hook'
 
-export const TestDisplay: React.FunctionComponent = () => {
+export const TestDisplay = () => {
   const { watch } = useFormContext();
   <%- props.rows.map((row) => {
     return row.inputs.map((input) => {

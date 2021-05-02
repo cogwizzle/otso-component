@@ -31,11 +31,11 @@ module.exports = {
     const properName = pascalCase(name)
 
     await generate({
-      template: 'card-trifold-template.ts.ejs',
-      target: `${path}/${name}.tsx`,
+      template: 'card-trifold-template.js.ejs',
+      target: `${path}/${name}.jsx`,
       props: { name, properName },
     })
 
-    info(`Generate Card trifold ./${name}.tsx`)
+    info(`Generate Card trifold ./${name}.jsx`)
   },
 }

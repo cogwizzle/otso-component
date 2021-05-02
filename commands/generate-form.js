@@ -80,8 +80,8 @@ module.exports = {
     const rows = await createRow(prompt);
 
     await generate({
-      template: 'form-template.ts.ejs',
-      target: `${results.formPath}/${results.formName}.tsx`,
+      template: 'form-template.js.ejs',
+      target: `${results.formPath}/${results.formName}.jsx`,
       props: {
         properName,
         formName: name,
@@ -94,8 +94,8 @@ module.exports = {
     })
 
     await generate({
-      template: 'test-display-template.ts.ejs',
-      target: `${results.formPath}/test-display.tsx`,
+      template: 'test-display-template.js.ejs',
+      target: `${results.formPath}/test-display.jsx`,
       props: {
         rows,
         pascalCase,
@@ -108,8 +108,8 @@ module.exports = {
       return await Promise.all(row.inputs.map(async (input) => {
         const dashName = dashCase(input.inputName);
         return await generate({
-          template: 'input-template.ts.ejs',
-          target: `${results.formPath}/${dashName}.tsx`,
+          template: 'input-template.js.ejs',
+          target: `${results.formPath}/${dashName}.jsx`,
           props: {
             ...input,
             pascalCase,
@@ -120,6 +120,6 @@ module.exports = {
       }));
     }))
 
-    info(`Generate form at ${path}/${name}.tsx`)
+    info(`Generate form at ${path}/${name}.jsx`)
   },
 }
