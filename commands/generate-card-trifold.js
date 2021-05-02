@@ -9,14 +9,30 @@ module.exports = {
       parameters,
       template: { generate },
       print: { info },
+      prompt,
     } = toolbox
 
-    const name = parameters.first
+    const results = await prompt.ask([
+      {
+        type: 'input',
+        name: 'name',
+        message: 'What is the name of the component?',
+      },
+      {
+        type: 'input',
+        name: 'path',
+        message: 'What is the path?',
+        default: 'src/components/',
+      }
+    ])
+
+    const name = results.name
+    const path = results.path
     const properName = pascalCase(name)
 
     await generate({
       template: 'card-trifold-template.ts.ejs',
-      target: `./${name}.tsx`,
+      target: `${path}/${name}.tsx`,
       props: { name, properName },
     })
 

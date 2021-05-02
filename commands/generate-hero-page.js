@@ -9,9 +9,18 @@ module.exports = {
       parameters,
       template: { generate },
       print: { info },
+      prompt,
     } = toolbox
 
-    const name = parameters.first
+    const results = await prompt.ask([
+      {
+        type: 'input',
+        name: 'name',
+        message: 'What is the name of the component?',
+      }
+    ])
+
+    const name = results.name
     const properName = pascalCase(name)
 
     await generate({
