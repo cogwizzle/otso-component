@@ -1,0 +1,12 @@
+import * as React from 'react'
+import { Controlled<%= props.pascalCase(props.inputType) %> } from 'component'
+
+const <%= props.pascalCase(props.inputName) %>: React.FunctionComponent = () => {
+  return (
+    <Controlled<%= props.pascalCase(props.inputType) %>
+      label='<%= props.pascalCase(props.inputName) %>'
+      name='<%= props.dashCase(props.inputName) %>'<%= (props.inputType === 'select') ? `
+      options={[]}` : '' %>
+    />
+  )
+}

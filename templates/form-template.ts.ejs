@@ -1,0 +1,52 @@
+import * as React from 'react'
+import {
+  FormHoc,
+  Grid,
+  Row,
+  Large,
+  Medium,
+  Small,
+} from 'component'
+<%- props.rows.map((row) => {
+  return row.inputs.map((input) => {
+    return `import { ${props.pascalCase(input.inputName)} } from './${props.dashCase(input.inputName)}`
+  }).join('\n')
+}).join('\n') %>
+import { TestDisplay } from './test-display'
+
+const Form = FormHoc({
+  name: '<%= props.formName %>'',
+  defaultValues: {
+    <%- props.rows.map((row) => {
+      return row.inputs.map((input) => {
+        return `${input.inputName}: null,`
+      }).join('\n')
+    }).join('\n') %>
+  }
+})
+
+export const <%= props.properName %>: React.FunctionComponent = () => {
+  return (
+    <div class="section">
+      <Grid>
+        <Row>
+          <Medium>
+            <Form>
+              <Grid>
+                <%- props.rows.map((row) => {
+                  return `<Row>${row.inputs.map((input) => {
+                    const rowSize = props.pascalCase(input.inputSize);
+                    return `<${rowSize}><${props.pascalCase(input.inputName)} /></${rowSize}>`
+                  }).join('\n')}</Row>`
+                }).join('\n') %>
+              </Grid>
+            </Form>
+          </Medium>
+          <Small>
+            <TestDisplay />
+          </Small>
+        </Row>
+      </Grid>
+    </div>
+  )
+}

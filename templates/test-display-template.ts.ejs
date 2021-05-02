@@ -1,0 +1,32 @@
+import * as React from 'react'
+import { useFormContext } from 'react-form-hook'
+
+export const TestDisplay: React.FunctionComponent = () => {
+  const { watch } = useFormContext();
+  <%- props.rows.map((row) => {
+    return row.inputs.map((input) => {
+      return `const ${camelCase(input.inputName)} = watch('${input.inputName}')`
+    }).join('\n')
+  }).join('\n') %>
+  return (
+    <table className='results'>
+      <thead>
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Value
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- props.rows.map((row) => {
+          return row.inputs.map((input) => {
+            return `<tr><td>${input.inputName}</td><td>{${camelCase(input.inputName)}}</td></tr>`
+          }).join('\n')
+        }).join('\n') %>
+      </tbody>
+    </table>
+  )
+}
