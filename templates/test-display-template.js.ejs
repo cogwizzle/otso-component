@@ -1,11 +1,11 @@
 import React from 'react'
-import { useFormContext } from 'react-form-hook'
+import { useFormContext } from 'react-hook-form'
 
 export const TestDisplay = () => {
   const { watch } = useFormContext();
   <%- props.rows.map((row) => {
     return row.inputs.map((input) => {
-      return `const ${camelCase(input.inputName)} = watch('${input.inputName}')`
+      return `const ${props.camelCase(input.inputName)} = watch('${props.dashCase(input.inputName)}')`
     }).join('\n')
   }).join('\n') %>
   return (
@@ -23,7 +23,7 @@ export const TestDisplay = () => {
       <tbody>
         <%- props.rows.map((row) => {
           return row.inputs.map((input) => {
-            return `<tr><td>${input.inputName}</td><td>{${camelCase(input.inputName)}}</td></tr>`
+            return `<tr><td>${props.dashCase(input.inputName)}</td><td>{${props.camelCase(input.inputName)}}</td></tr>`
           }).join('\n')
         }).join('\n') %>
       </tbody>
