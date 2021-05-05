@@ -1,5 +1,6 @@
 
 const pascalCase = require('pascal-case').pascalCase
+const formatFile = require('../prettier/format-file').formatFile;
 
 module.exports = {
   name: 'generate-card-trifold',
