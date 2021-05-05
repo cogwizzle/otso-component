@@ -6,20 +6,21 @@ import {
   Large,
   Medium,
   Small,
+  ExtraLarge,
 } from 'component'
 <%- props.rows.map((row) => {
   return row.inputs.map((input) => {
-    return `import { ${props.pascalCase(input.inputName)} } from './${props.dashCase(input.inputName)}`
+    return `import { ${props.pascalCase(input.inputName)} } from './${props.dashCase(input.inputName)}'`
   }).join('\n')
 }).join('\n') %>
 import { TestDisplay } from './test-display'
 
 const Form = FormHoc({
-  name: '<%= props.formName %>'',
+  name: '<%= props.formName %>',
   defaultValues: {
     <%- props.rows.map((row) => {
       return row.inputs.map((input) => {
-        return `${input.inputName}: null,`
+        return `'${input.inputName}': null,`
       }).join('\n')
     }).join('\n') %>
   }
@@ -28,25 +29,27 @@ const Form = FormHoc({
 export const <%= props.properName %> = () => {
   return (
     <div class="section">
-      <Grid>
-        <Row>
-          <Medium>
-            <Form>
-              <Grid>
+      <Row>
+        <ExtraLarge>
+          <Form>
+            <Row>
+              <Medium>
                 <%- props.rows.map((row) => {
-                  return `<Row>${row.inputs.map((input) => {
+                  return `<Row>
+                    ${row.inputs.map((input) => {
                     const rowSize = props.pascalCase(input.inputSize);
                     return `<${rowSize}><${props.pascalCase(input.inputName)} /></${rowSize}>`
-                  }).join('\n')}</Row>`
+                  }).join('\n')}
+                  </Row>`
                 }).join('\n') %>
-              </Grid>
-            </Form>
-          </Medium>
-          <Small>
-            <TestDisplay />
-          </Small>
-        </Row>
-      </Grid>
+              </Medium>
+              <Small>
+                <TestDisplay /> 
+              </Small>
+            </Row>
+          </Form>
+        </ExtraLarge>
+      </Row>
     </div>
   )
 }
