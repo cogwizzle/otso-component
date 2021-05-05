@@ -34,6 +34,11 @@ module.exports = {
       template: 'card-trifold-template.js.ejs',
       target: `${path}/${name}.jsx`,
       props: { name, properName },
+    }).then(() => {
+      return formatFile(
+        `${path}/${name}.jsx`,
+        `${path}/${name}.jsx`,
+      )
     })
 
     info(`Generate Card trifold ./${name}.jsx`)

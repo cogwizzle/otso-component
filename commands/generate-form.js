@@ -2,6 +2,7 @@
 const pascalCase = require('pascal-case').pascalCase
 const dashCase = require('param-case').paramCase
 const camelCase = require('camel-case').camelCase
+const formatFile = require('../prettier/format-file').formatFile
 
 const createRow = async (prompt, rows = []) => {
   const shouldCreateRow = await prompt.confirm('Would you like to create a row of inputs?')
@@ -91,6 +92,11 @@ module.exports = {
         camelCase,
         dashCase
       },
+    }).then(() => {
+      return formatFile(
+        `${results.formPath}/${results.formName}.jsx`,
+        `${results.formPath}/${results.formName}.jsx`,
+      )
     })
 
     await generate({
@@ -102,6 +108,11 @@ module.exports = {
         camelCase,
         dashCase
       },
+    }).then(() => {
+      return formatFile(
+        `${results.formPath}/test-display.jsx`,
+        `${results.formPath}/test-display.jsx`,
+      )
     })
 
     await Promise.all(rows.map(async (row) => {
@@ -116,8 +127,13 @@ module.exports = {
             camelCase,
             dashCase
           }
-        });
-      }));
+        }).then(() => {
+          return formatFile(
+            `${results.formPath}/${dashName}.jsx`,
+            `${results.formPath}/${dashName}.jsx`,
+          )
+        })
+      }))
     }))
 
     info(`Generate form at ${path}/${name}.jsx`)
