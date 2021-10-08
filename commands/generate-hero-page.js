@@ -40,7 +40,7 @@ module.exports = {
     })
 
     copy(
-      'node_modules/otso-cli-component/templates/hero-page.jpg',
+      'node_modules/poc-cli-component/templates/hero-page.jpg',
       `src/pages/assets/${imageId}.jpg`
     )
 
