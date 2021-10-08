@@ -7,10 +7,10 @@ module.exports = (toolbox) => {
   }
 
   // enable this if you want to read configuration in from
-  // the current folder's package.json (in a "poc-cli" property),
-  // poc-cli.config.json, etc.
+  // the current folder's package.json (in a "otso" property),
+  // otso.config.json, etc.
   // toolbox.config = {
   //   ...toolbox.config,
-  //   ...toolbox.config.loadConfig("poc-cli", process.cwd())
+  //   ...toolbox.config.loadConfig("otso", process.cwd())
   // }
 }
